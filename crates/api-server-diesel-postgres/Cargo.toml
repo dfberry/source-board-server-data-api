@@ -1,0 +1,16 @@
+[package]
+name = "api-server-diesel-postgres"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7.5" }
+axum-extra = { version = "0.9.3", features = ["typed-header"] }
+tokio = { version = "1.0", features = ["full"] }
+dotenvy = "0.15"
+diesel = { version = "2.2.3", features = ["postgres", "chrono"] }
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+chrono = "0.4"
+uuid = { version = "1.11.0", features = ["v4", "fast-rng", "macro-diagnostics"] }
+rand = "0.8"
