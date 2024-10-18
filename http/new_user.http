@@ -1,0 +1,7 @@
+POST http://localhost:4001/user HTTP/1.1
+content-type: application/json
+
+{
+    "github_id":"1",
+    "username": "diberry"
+}

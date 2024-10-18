@@ -3,8 +3,9 @@ use diesel::pg::PgConnection;
 use chrono::Utc;
 use dotenvy::dotenv;
 use std::env;
+use uuid::Uuid;
 
-use super::models::GitHub_User;
+use super::models::{GitHub_User, New_GitHub_User};
 use crate::schema::github_users;
 
 pub fn establish_connection() -> PgConnection {
@@ -16,24 +17,17 @@ pub fn establish_connection() -> PgConnection {
 }
 
 
-pub fn create_user(conn: &mut PgConnection, id: &str, github_id: &str, username: &str) -> GitHub_User {
-
-    let new_user = GitHub_User {
-        id: id.to_string(),
-        github_id: github_id.to_string(),
-        username: username.to_string(),
-        created_at: Utc::now(),
-    };
+pub fn create_user(conn: &mut PgConnection, new_user: &New_GitHub_User) -> Result<GitHub_User, diesel::result::Error> {
 
     diesel::insert_into(github_users::table)
-        .values(&new_user)
+        .values(new_user)
         .returning(GitHub_User::as_returning())
         .get_result(conn)
-        .expect("Error saving new GitHub_User")
 
 }
-pub fn read_all_users(conn: &mut PgConnection,) -> QueryResult<Vec<GitHub_User>> {
+pub fn read_all_users(conn: &mut PgConnection,) -> Result<Vec<GitHub_User>, diesel::result::Error> {
 
     github_users::table.load::<GitHub_User>(conn)
+
 
 }
