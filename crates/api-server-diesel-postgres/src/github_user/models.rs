@@ -10,8 +10,8 @@ use serde::{Serialize, Deserialize};
 #[derive(Debug)]
 pub struct GitHub_User {
     pub id: Uuid,
-    pub github_id: String,
-    pub username: String,
+    pub gh_user_id: String,
+    pub gh_user_name: String,
     pub created_at: DateTime<Utc>,
 }
 
@@ -21,12 +21,12 @@ pub struct GitHub_User {
 #[derive(Serialize, Deserialize)]
 #[derive(Debug)]
 pub struct New_GitHub_User {
-    pub github_id: String,
-    pub username: String,
+    pub gh_user_id: String,
+    pub gh_user_name: String,
 }
 
 impl New_GitHub_User {
     pub fn is_valid(&self) -> bool {
-        !self.github_id.is_empty() && !self.username.is_empty()
+        !self.gh_user_id.is_empty() && !self.gh_user_name.is_empty()
     }
 }

@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS github_user_tokens (
 
 CREATE TABLE IF NOT EXISTS github_users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-    github_id TEXT NOT NULL UNIQUE,
-    username TEXT NOT NULL UNIQUE,
+    gh_user_id TEXT NOT NULL UNIQUE,
+    gh_user_name TEXT NOT NULL UNIQUE,
     created_at TIMESTAMPTZ DEFAULT now() NOT NULL
 );
 

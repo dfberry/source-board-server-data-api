@@ -34,8 +34,8 @@ diesel::table! {
 diesel::table! {
     github_users (id) {
         id -> Uuid,
-        github_id -> Text,
-        username -> Text,
+        gh_user_id -> Text,
+        gh_user_name -> Text,
         created_at -> Timestamptz,
     }
 }
